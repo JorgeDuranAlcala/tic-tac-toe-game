@@ -15,18 +15,20 @@
     components: {Board},
     data() {
       return {
+        roomName: '',
         board: [
           [{value: 0, mark: '', color: 'blue'}, {value: 0, mark: '', color: 'blue'}, {value: 0, mark: '', color: 'blue'}],
           [{value: 0, mark: '', color: 'blue'}, {value: 0, mark: '', color: 'blue'}, {value: 0, mark: '', color: 'blue'}],
           [{value: 0, mark: '', color: 'blue'}, {value: 0, mark: '', color: 'blue'}, {value: 0, mark: '', color: 'blue'}],
-        ]
+        ],
+        socket: {}
       }
-    }
+    },
   }
 </script>
 
 <template>
   <div class="about">
-    <Board :rows="board"/>
+   <Board :rows="board" />
   </div>
 </template>
