@@ -4,11 +4,9 @@ services:
     env: docker
     plan: free
     dockerContext: ./frontend
-    rootDir: frontend
   
   - type: web
     name: backend
     env: docker
     plan: free
     dockerContext: ./backend
-    rootDir: backend
