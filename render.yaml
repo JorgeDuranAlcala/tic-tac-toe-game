@@ -3,10 +3,12 @@ services:
     name: frontend
     env: docker
     plan: free
+    dockerfilePath: ./frontend/Dockerfile
     dockerContext: ./frontend
   
   - type: web
     name: backend
     env: docker
     plan: free
+    dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
