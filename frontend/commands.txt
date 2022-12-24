@@ -1,0 +1,5 @@
+systemctl status docker
+service docker start
+sudo systemctl restart docker
+sudo systemctl daemon-reload
+sudo docker build -t app/vuejs-app .

@@ -1,5 +1,6 @@
 <script >
   import socket from 'socket.io-client';
+import socketioService from '../services/socketio.service';
   export default {
     inject: ['confetti'],
     props: {
@@ -32,7 +33,7 @@
       }
     },
     created() {
-      this.socket = socket('http://localhost:3000')
+      this.socket = socketioService.getSocket()
     },
     mounted() {
       this.socket.on('position', ({ row, col }) => {
@@ -199,9 +200,8 @@
          <table>
         <tbody>
           <tr v-for="(row, rowindex) in rows" :key="rowindex">
-            
             <td v-if="shouldSelectCell" @click="selectCell(rowindex, colindex)" v-for="(col, colindex) in row" class="square" :class="col.color" :key="rowindex-colindex">{{ col.mark }}</td>
-            <td v-else v-for="(col, colindex) in row" class="square" :class="col.color" :key="rowindex-colindex">{{ col.mark }}</td>
+            <td v-else v-for="(col, colindex) in row" class="square" :class="col.color" :key="colindex-rowindex">{{ col.mark }}</td>
           </tr>
         </tbody>
       </table>

@@ -18,8 +18,33 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/room/:roomId',
+      name: 'room',
+      path: '/room/:roomName',
       component: () => import('../views/RoomView.vue')
+    },
+    {
+      name: 'createRoom',
+      path: '/createRoom',
+      component: () => import('../views/CreateRoomView.vue')
+    },
+    {
+      name: 'enterRoom',
+      path: '/enterRoom',
+      component: () => import('../views/EnterRoomView.vue')
+    },
+    {
+      name: 'login',
+      path: '/login',
+      component: () => import('../views/LoginView.vue')
+    },
+    {
+      name: 'signup',
+      path: '/signup',
+      component: () => import('../views/SignUpView.vue')
+    },
+    {
+      path: '/:pathMatch(.*)',
+      redirect: { name: 'home' }
     }
   ]
 })

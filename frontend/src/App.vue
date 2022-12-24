@@ -1,23 +1,26 @@
-<script setup>
+<script>
+import { onBeforeUnmount } from 'vue';
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import socketService from './services/socketio.service'
+export default {
+  name: 'app',
+  components: { RouterView,  },
+  created() {
+    socketService.init()
+  },
+  onBeforeUnmount() {
+    socketService.disconnect()
+  }
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <!--<HelloWorld msg="You did it!" /> -->
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/game">Game</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <router-view v-slot="{ Component }">
+    <transition name="fade" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 <style scoped>
@@ -82,4 +85,13 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
 </style>
